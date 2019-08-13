@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+const cTable = require("console.table");
+
 let mysql = require("mysql");
 let inquirer = require("inquirer");
 
@@ -22,13 +24,22 @@ function displayProducts() {
     connection.query("SELECT * FROM products", function(error, results) {
         if (error) throw error;
 
+        let customerDisplay = [];
+
+        // for (let i = 0; i < results.length; i++) {
+        //     console.log("Item ID: " + results[i].item_id + " | " + "Product name: " + results[i].product_name + " | " + "Price: $" +
+        //      results[i].price.toFixed(2));
+        // };
+
         for (let i = 0; i < results.length; i++) {
-            console.log("Item ID: " + results[i].item_id + " | " + "Product name: " + results[i].product_name + " | " + "Price: $" +
-             results[i].price.toFixed(2));
+            customerDisplay.push({
+                Item_ID: results[i].item_id,
+                Product_Name: results[i].product_name,
+                Price: results[i].price.toFixed(2)
+            });
         };
 
-        console.log(" ");
-        // connection.end();
+        console.table(customerDisplay);
         promptCustomer();
     });
 };
