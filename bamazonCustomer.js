@@ -63,20 +63,22 @@ function promptCustomer() {
             // console.log(results);
 
             if (parseInt(answers.productUnit) > results[0].stock_quantity) {
-                console.log("Insufficient stock quantity! Order did not proceed.");
+                console.log("\nInsufficient stock quantity! Order did not proceed.");
             } else {
                 let updatedQuantity = results[0].stock_quantity - parseInt(answers.productUnit);
                 let purchaseCost = results[0].price * parseInt(answers.productUnit);
+                let updatedSales = results[0].product_sales + purchaseCost;
 
                 connection.query("UPDATE products SET ? WHERE ?",
                     [
-                        {stock_quantity: updatedQuantity},
+                        {stock_quantity: updatedQuantity, product_sales: updatedSales},
                         {item_id: answers.productID}
 
                     ], function(error, results) {
                         if (error) throw error;
+                    }
 
-                });
+                );
 
                 console.log("\nThe cost of the purchase will be: $" + purchaseCost.toFixed(2));
 
