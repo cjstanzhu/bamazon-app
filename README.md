@@ -37,7 +37,7 @@ The "View Low Inventory" option will display all items with an inventory count l
 ![manager-view-3 example](./assets/images/manager-view-3.jpg)
 ![manager-view-4 example](./assets/images/manager-view-4.jpg)
 
-3. `node bamazonManager.js`
+3. `node bamazonSupervisor.js`
 
 Supervisors are able to view summaries of sales by department and add departments to the store. Running this application will offer two options:
 
