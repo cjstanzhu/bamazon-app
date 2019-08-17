@@ -15,8 +15,8 @@ let connection = mysql.createConnection({
 
 connection.connect(function(error) {
     if (error) throw error;
-    // console.log("connected as id: " + connection.threadId);
-    console.log("\nWelcome to bamazon Supervisor View!\n");
+    
+    console.log("\nWelcome to Bamazon Supervisor View!\n");
     promptOptions();
 });
 
@@ -89,7 +89,7 @@ function addDepartment() {
         {
             type: "input",
             name: "overHeadCosts",
-            message: "Enter the over head costs amount($):"
+            message: "Enter the over head costs amount ($):"
         }
 
     ]).then(function(answers) {
@@ -101,6 +101,7 @@ function addDepartment() {
             }, function(error, results) {
                 if (error) throw error;
 
+                console.log("\nSuccessfully added department.")
                 connection.end();
             }
         );

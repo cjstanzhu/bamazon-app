@@ -15,8 +15,8 @@ let connection = mysql.createConnection({
 
 connection.connect(function(error) {
     if (error) throw error;
-    // console.log("connected as id: " + connection.threadId);
-    console.log("\nWelcome to bamazon! These are the products available for sale:\n");
+    
+    console.log("\nWelcome to Bamazon! These are the products available for sale:\n");
     displayProducts();
 });
 
@@ -60,7 +60,6 @@ function promptCustomer() {
     ]).then(function(answers) {
         connection.query("SELECT * FROM products WHERE ?", {item_id: answers.productID}, function(error, results) {
             if (error) throw error;
-            // console.log(results);
 
             if (parseInt(answers.productUnit) > results[0].stock_quantity) {
                 console.log("\nInsufficient stock quantity! Order did not proceed.");
@@ -80,7 +79,7 @@ function promptCustomer() {
 
                 );
 
-                console.log("\nThe cost of the purchase will be: $" + purchaseCost.toFixed(2));
+                console.log("\nSuccessful order! The cost of the purchase will be: $" + purchaseCost.toFixed(2));
 
             };
 

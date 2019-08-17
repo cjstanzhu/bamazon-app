@@ -15,8 +15,8 @@ let connection = mysql.createConnection({
 
 connection.connect(function(error) {
     if (error) throw error;
-    // console.log("connected as id: " + connection.threadId);
-    console.log("\nWelcome to bamazon Manager View!\n");
+    
+    console.log("\nWelcome to Bamazon Manager View!\n");
     promptOptions();
 });
 
@@ -127,6 +127,8 @@ function addInventory() {
 
                 ], function(error, results) {
                     if (error) throw error;
+
+                    console.log("\nSuccessfully added to inventory.")
                 }
 
             );
@@ -151,7 +153,7 @@ function addProduct() {
         {
             type: "input",
             name: "price",
-            message: "Enter the product price($):"
+            message: "Enter the product price ($):"
         },
         {
             type: "input",
@@ -170,6 +172,7 @@ function addProduct() {
             }, function(error, results) {
                 if (error) throw error;
 
+                console.log("\nSuccessfully added product.");
                 connection.end();
             }
         );
